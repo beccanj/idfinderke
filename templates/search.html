@@ -1,0 +1,98 @@
+{% extends 'index.html' %}
+
+
+
+{% block content %}
+  {% comment %} <section class="search-section py-5 bg-light my-5">
+    <div class="container">
+      <form method="get" action="{% url 'results' %}" class="d-flex justify-content-center">
+        {% csrf_token %}
+        <input type="text" name="q" class="form-control me-2 w-50" placeholder="Search..." id="search-input" value="{{ request.GET.q }}" />
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+
+      <!-- Results list container -->
+      <ul id="results-list" class="list-group w-50 mx-auto mt-2"></ul>
+    </div>
+  </section> {% endcomment %}
+
+  <section >
+    <div >
+      <div class="container-fluid p-0" style="margin: 0 auto; max-width: 90%;">
+        <!-- Search Bar -->
+        <h2 class="mb-4 text-primary text-center">Search</h2>
+
+        <div class="row">
+          <div class="col-12 p-2 m-2 mx-auto">
+            <div class="ask-ai-wrapper mb-5">
+              <div class="ai-input-container">
+                <span class="underline-effect"></span>
+                <span class="ripple-circle"></span>
+                <span class="bg-fade"></span>
+                <span class="floating-dots">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </span>
+                <form action="{% url 'search' %}" method="GET" class="d-flex align-items-center w-100">
+                  <input type="text" name="q" placeholder="Enter ID No./Area/Name" class="me-2 flex-grow-1 ai-input" id="id_number" />
+
+                  <button type="submit" class="border-0 bg-transparent p-0 m-0" style="cursor: pointer; line-height: 0;">
+                    <svg class="ai-icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+                      <path fill="#F95C19" stroke="#788b9c" stroke-miterlimit="10" d="M5.2,36.6c-0.5,0-0.9-0.2-1.3-0.5c-0.3-0.3-0.5-0.8-0.5-1.3s0.2-0.9,0.5-1.3l16.2-15.4l1.8,1.8L6.5,36.1 C6.2,36.4,5.7,36.6,5.2,36.6z" />
+                      <path fill="#F95C19" stroke="#788b9c" stroke-miterlimit="10" d="M25.5,25.4c-6,0-10.9-4.9-10.9-10.9S19.5,3.6,25.5,3.6s10.9,4.9,10.9,10.9S31.5,25.4,25.5,25.4z" />
+                    </svg>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Results Section -->
+
+        <div class="row g-4">
+          <!-- Table Section -->
+          <div class="col-lg-6">
+            <h5 class="text-secondary mb-3">Report Details</h5>
+            <div class="table-responsive table">
+              <table class="table table-hover table-striped align-middle mb-0">
+                <thead class="table-light">
+                  <tr>
+                    <th>Full Name</th>
+                    <th>ID Number</th>
+                    <th>Area</th>
+                    <th>Samaritan</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for report in results %}
+                    <tr>
+                      <td>{{ report.full_name }}</td>
+                      <td>{{ report.id_number }}</td>
+                      <td>{{ report.lost_location }}</td>
+                      <td>{{ report.found_by }}</td>
+                      <td>{{ report.date_reported }}</td>
+                    </tr>
+                  {% empty %}
+                    <tr>
+                      <td colspan="5" class="text-center text-muted">No results found.</td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Map Section -->
+          <div class="col-lg-6">
+            <h5 class="text-secondary mb-3">Lost ID Locations</h5>
+            <div style="width: 100%;  border-radius: 16px; overflow: hidden; box-shadow: 0 0 10px rgba(0,0,0,0.1);" class="rounded-4">{{ folium_map|safe }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

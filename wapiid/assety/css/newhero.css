@@ -1,0 +1,827 @@
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+    margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        interpolate-size: allow-keywords;
+    }
+}
+
+body {
+    /* 4. Add accessible line-height */
+    line-height: 1.5;
+    /* 5. Improve text rendering */
+    -webkit-font-smoothing: antialiased;
+}
+
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+.ai-icon svg{
+    margin-top: -40px;
+}
+
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+
+body {
+    font-family: 'Outfit';
+    font-style: normal;
+}
+
+h1 {
+    /* Kronix */
+
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 140%;
+    /* identical to box height, or 45px */
+    text-align: center;
+
+    color: #FFFFFF;
+
+
+}
+
+p {
+    /* Submit as many design tasks as you need without worrying about individual project fees. */
+
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 140%;
+    /* or 25px */
+
+    color: rgba(255, 255, 255, 0.8);
+
+
+}
+
+/* Group 427320563 */
+
+.partners-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 36px;
+    position: absolute;
+    width: 1279px;
+    height: 174px;
+    left: 50px;
+    top: -5px;
+    isolation: isolate;
+    margin: auto;
+}
+
+.partners-section h3 {
+    text-align: center;
+}
+
+.features {
+    /* Features */
+
+    position: absolute;
+    width: 1156px;
+    height: 279px;
+    left: 150px;
+    top: 958px;
+
+
+}
+
+/* How We Work */
+.feature-light-heading {
+    position: absolute;
+    width: 120px;
+    height: 22px;
+    left: 0px;
+    top: 0px;
+
+
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 140%;
+    /* or 22px */
+    text-transform: uppercase;
+
+    color: #B9FD50;
+}
+
+.feature h1 {
+    /* Get a dedicated design team at fraction of the cost. */
+
+    position: absolute;
+    text-align: left;
+    width: 606px;
+    height: 174px;
+    left: 0px;
+    top: 97.33px;
+
+
+    font-weight: 600;
+    font-size: 54px;
+    line-height: 58px;
+    /* or 107% */
+    letter-spacing: -0.015em;
+
+    color: #111204;
+
+
+}
+
+.feature p {
+    /* Grow your brand with high-quality design for a flat monthly fee. Work with senior designers. Subscribe and make as many requests as you need - no limits. */
+
+    position: absolute;
+    width: 500px;
+    height: 136px;
+    left: 703px;
+    top: 97.33px;
+
+
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 140%;
+    /* or 34px */
+
+    color: #111204;
+
+
+}
+
+.feature-button {
+    /* Buttom */
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 14px;
+    gap: 14px;
+
+    position: absolute;
+    width: 149px;
+    height: 56px;
+    left: 703px;
+    top: 270px;
+
+    background: #B9FD50;
+    border-radius: 8px;
+
+}
+
+
+
+
+/* Ellipse 3 */
+.ellipse-3 {
+    position: absolute;
+    width: 416px;
+    height: 309px;
+    left: calc(50% - 416px/2);
+    top: 166px;
+
+    background: rgba(185, 253, 80, 0.4);
+    filter: blur(174px);
+}
+
+/* Star */
+.star {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    left: 374.31px;
+    top: 539px;
+
+    background: rgba(185, 253, 80, 0.25);
+    transform: rotate(45deg);
+}
+
+.star2 {
+    /* Star */
+
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    left: 933.97px;
+    top: 558px;
+
+    background: rgba(185, 253, 80, 0.25);
+    transform: rotate(45deg);
+
+}
+
+.star3 {
+
+    /* Star */
+
+    position: absolute;
+    width: 112.23px;
+    height: 112.23px;
+    left: 1134.36px;
+    top: 176px;
+
+    background: rgba(185, 253, 80, 0.25);
+    transform: rotate(45deg);
+
+}
+
+
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    position: absolute;
+    width: 1143px;
+    height: 56px;
+    left: 148px;
+    top: 34px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.cta-button {
+    padding: 10px 20px;
+    background-color: #B9FD50;
+    color: #111204;
+    border: none;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+
+.hero {
+    display: flex;
+    position: relative;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    font-family: 'Outfit', sans-serif;
+    color: white;
+}
+
+.hero-heading {
+    position: absolute;
+    width: 983px;
+    height: 205px;
+    left: 50%;
+    top: 194px;
+    transform: translateX(-50%);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 96px;
+    line-height: 103px;
+    letter-spacing: -0.03em;
+    text-transform: capitalize;
+    color: #111204;
+}
+
+.hero-paragraph {
+    /* We increase revenue and ensure sustainable long-term growth for your business through powerful Webflow websites. */
+
+    position: absolute;
+    width: 600px;
+    height: 50px;
+    left: 460px;
+    top: 444px;
+
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 140%;
+    /* or 25px */
+    text-align: center;
+
+    color: #111204;
+
+
+}
+
+.hero-button {
+    /* Buttom */
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 14px;
+    gap: 14px;
+
+    position: absolute;
+    width: 149px;
+    height: 56px;
+    left: calc(50% - 149px/2 - 0.5px);
+    top: 536px;
+
+    background: #B9FD50;
+    border-radius: 8px;
+
+
+}
+
+/* Rectangle 5 */
+.rectangle-4 {
+    position: absolute;
+    width: 50px;
+    height: 2px;
+    left: 890px;
+    top: 672px;
+
+    background: #B9FD50;
+}
+
+.rectangle-5 {
+    /* Rectangle 4 */
+
+    position: absolute;
+    width: 50px;
+    height: 2px;
+    left: 501px;
+    top: 672px;
+
+    background: #B9FD50;
+
+}
+
+/* Rectangle 11905 */
+.partner-logos-container {
+    position: absolute;
+    width: 1279px;
+    height: 114px;
+    left: 96px;
+    top: 721px;
+
+    background: #222222;
+    border-radius: 22px;
+}
+
+/* Group 427320563 */
+.partners h3 {
+    /* TRUSTED BY AMAZING BRANDS */
+
+    position: absolute;
+    width: 261px;
+    height: 24px;
+    left: 590px;
+    top: 661px;
+
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 24px;
+    /* identical to box height, or 160% */
+    letter-spacing: 0.095em;
+    text-transform: uppercase;
+
+    color: black;
+
+
+}
+
+.partner-logos {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+/* Ellipse 3 */
+.hero-ellipse {
+
+    position: absolute;
+    width: 416px;
+    height: 309px;
+    left: calc(50% - 416px/2);
+    top: 166px;
+
+    background: rgba(185, 253, 80, 0.4);
+    filter: blur(174px);
+}
+
+.search-section {
+    width: 100%;
+    background-color: #f9f9f9;
+    /* optional light background */
+    padding: 60px 0;
+    /* top and bottom padding */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+/* From Uiverse.io by chase2k25 */
+.ask-ai-wrapper {
+    display: inline-block;
+
+    /* Adjustable width */
+    position: relative;
+    width: 90%;
+    max-width: 960px;
+}
+
+.ask-ai-wrapper .ai-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border: 2px solid #4a4a4a;
+    border-radius: 12px;
+    padding: 10px 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+    padding: 16px 20px;
+    font-size: 18px;
+}
+
+/* Input field */
+.ask-ai-wrapper .ai-input {
+    flex-grow: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: sans-serif;
+    font-size: 1rem;
+    color: #333;
+    padding: 6px 10px;
+    width: 100%;
+    position: relative;
+    /* Ensure it stays above other elements */
+    z-index: 2;
+    /* Bring input to the front */
+    transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ask-ai-wrapper .ai-input::placeholder {
+    color: #888;
+    font-style: italic;
+}
+
+/* SVG container */
+.ask-ai-wrapper .icon-container {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    transition: all 0.5s cubic-bezier(0.7, -0.5, 0.3, 1.5);
+    cursor: pointer;
+    z-index: 2;
+    /* Ensure SVG is clickable */
+}
+
+/* SVG animation */
+.ask-ai-wrapper .ai-icon path {
+    fill: #4a4a4a;
+    transform-origin: center;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Subtle underline effect */
+.ask-ai-wrapper .underline-effect {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #ff6b6b;
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 1;
+}
+
+/* Ripple circle */
+.ask-ai-wrapper .ripple-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 107, 107, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 0;
+}
+
+/* Floating dots */
+.ask-ai-wrapper .floating-dots {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    /* Prevent dots from blocking input */
+    z-index: 1;
+    /* Below input but above background */
+}
+
+.ask-ai-wrapper .floating-dots span {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #ff6b6b;
+    border-radius: 50%;
+    opacity: 0;
+    transition:
+        opacity 0.3s ease,
+        transform 0.6s cubic-bezier(0.7, -0.5, 0.3, 1.5);
+}
+
+/* Background fade */
+.ask-ai-wrapper .bg-fade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg,
+            rgba(255, 107, 107, 0.05),
+            rgba(255, 235, 235, 0.1));
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 0;
+}
+
+/* Hover and focus states */
+.ask-ai-wrapper .ai-input-container:hover,
+.ask-ai-wrapper .ai-input:focus-within .ai-input-container {
+    border-color: #ff6b6b;
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+    transform: translateY(-4px);
+}
+
+.ask-ai-wrapper .ai-input-container:hover .icon-container,
+.ask-ai-wrapper .ai-input:focus-within .icon-container {
+    transform: translateY(-2px) scale(1.1);
+}
+
+.ask-ai-wrapper .ai-input-container:hover .ai-icon path,
+.ask-ai-wrapper .ai-input:focus-within .ai-icon path {
+    fill: #ff6b6b;
+    transform: scale(1.1) rotate(5deg);
+    animation: gentleBounce 0.5s infinite alternate cubic-bezier(0.7, -0.5, 0.3, 1.5);
+}
+
+.ask-ai-wrapper .ai-input-container:hover .underline-effect,
+.ask-ai-wrapper .ai-input:focus-within .underline-effect {
+    width: 100%;
+}
+
+.ask-ai-wrapper .ai-input-container:hover .ripple-circle,
+.ask-ai-wrapper .ai-input:focus-within .ripple-circle {
+    width: 200px;
+    height: 200px;
+}
+
+.ask-ai-wrapper .ai-input-container:hover .floating-dots span,
+.ask-ai-wrapper .ai-input:focus-within .floating-dots span {
+    opacity: 1;
+    animation: floatUp 1.2s infinite cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.ask-ai-wrapper .ai-input-container:hover .bg-fade,
+.ask-ai-wrapper .ai-input:focus-within .bg-fade {
+    opacity: 1;
+}
+
+/* Focus state for input */
+.ask-ai-wrapper .ai-input:focus {
+    color: #ff6b6b;
+}
+
+/* Animations */
+@keyframes gentleBounce {
+    0% {
+        transform: scale(1.1) translateY(1px);
+    }
+
+    100% {
+        transform: scale(1.1) translateY(-1px);
+    }
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translate(var(--x), var(--y)) scale(1);
+        opacity: 0;
+    }
+
+    50% {
+        transform: translate(var(--x), calc(var(--y) - 15px)) scale(1.3);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(var(--x), calc(var(--y) - 30px)) scale(1);
+        opacity: 0;
+    }
+}
+
+/* Dot positions */
+.ask-ai-wrapper .floating-dots span:nth-child(1) {
+    --x: 10px;
+    --y: 10px;
+    animation-delay: 0s;
+}
+
+.ask-ai-wrapper .floating-dots span:nth-child(2) {
+    --x: -5px;
+    --y: 5px;
+    animation-delay: 0.2s;
+}
+
+.ask-ai-wrapper .floating-dots span:nth-child(3) {
+    --x: 15px;
+    --y: 0px;
+    animation-delay: 0.4s;
+}
+
+.ask-ai-wrapper .floating-dots span:nth-child(4) {
+    --x: -10px;
+    --y: 15px;
+    animation-delay: 0.6s;
+}
+
+
+
+
+/* Submit as many design tasks as you need without worrying about individual project fees. */
+.fuction-1 {
+
+    position: absolute;
+    width: 283px;
+    height: 100px;
+    left: 148px;
+    top: 1552px;
+
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 140%;
+    /* or 25px */
+
+    color: rgba(255, 255, 255, 0.8);
+
+
+}
+
+
+
+
+/* Our designers get to work to deliver your request. Receive your design within a few days. */
+.function-2 {
+    position: absolute;
+    width: 283px;
+    height: 75px;
+    left: 585px;
+    top: 1552px;
+
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 140%;
+    /* or 25px */
+
+    color: rgba(255, 255, 255, 0.8);
+}
+
+
+
+
+/* Custom designs, prompt replies and as many revisions as you need. */
+.function-3 {
+    position: absolute;
+    width: 283px;
+    height: 50px;
+    left: 1022px;
+    top: 1552px;
+
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 140%;
+    /* or 25px */
+
+    color: rgba(255, 255, 255, 0.8);
+
+}
+
+
+
+/* Subscribe & get started */
+.funtion-heading {
+    position: absolute;
+    width: 379px;
+    height: 33px;
+    left: 148px;
+    top: 1498px;
+
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 33px;
+    /* identical to box height */
+    letter-spacing: -0.01em;
+
+    color: #FFFFFF;
+}
+
+
+
+
+
+
+
+/* Vector 292 */
+.vector-292 {
+    position: absolute;
+    width: 0px;
+    height: 324px;
+    left: 242px;
+    top: 1411px;
+
+    border: 2px solid #B9FD50;
+    transform: rotate(-90deg);
+}
+
+
+
+/* Vector 293 */
+.vector-293 {
+    position: absolute;
+    width: 0px;
+    height: 316px;
+    left: 682px;
+    top: 1410px;
+
+    border: 2px solid #B9FD50;
+    transform: rotate(-90deg);
+}
+
+
+
+/* Ellipse 233 */
+.ellipse-233 {
+    position: absolute;
+    width: 93px;
+    height: 93px;
+    left: 157px;
+    top: 1364px;
+
+    background: #B9FD50;
+}
+
+
+
+
+

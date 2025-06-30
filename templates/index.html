@@ -1,0 +1,456 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- =============================================== -->
+    <!-- Document Title -->
+    <!-- =============================================== -->
+    <title>IDFinderKE</title>
+
+    <!-- =============================================== -->
+    <!-- Favicons -->
+    <!-- =============================================== -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/favicons/apple-touch-icon.png' %}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/search.png' %}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/search.png' %}" />
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/search.png' %}" />
+    <link rel="manifest" href="{% static 'img/favicons/manifest.json' %}" />
+    <meta name="msapplication-TileImage" content="{% static 'img/favicons/mstile-150x150.png' %}" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <!-- =============================================== -->
+    <!-- Stylesheets -->
+    <!-- =============================================== -->
+    <link href="{% static 'css/theme.css' %}" rel="stylesheet" />
+
+    <style>
+      /* Search section*/
+      .search-section {
+        width: 100%;
+        background-color: transparent;
+        /* optional light background */
+        padding: 60px 0;
+        /* top and bottom padding */
+      
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 100px;
+      }
+      
+      /* From Uiverse.io by chase2k25 */
+      .ask-ai-wrapper {
+        width: 100%;
+        position: relative;
+        display: block;
+        margin: 0;
+      }
+      
+      .ask-ai-wrapper .ai-input-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        background: #ffffff;
+        border: 2px solid #4a4a4a;
+        border-radius: 12px;
+        padding: 10px 14px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: all 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+        overflow: hidden;
+        width: 100%;
+        max-width: 100%;
+      
+        padding: 16px 20px;
+        font-size: 18px;
+      }
+      
+      /* Input field */
+      .ask-ai-wrapper .ai-input {
+        flex-grow: 1;
+        background: transparent;
+        border: none;
+        outline: none;
+        font-family: sans-serif;
+        font-size: 1rem;
+        color: #333;
+        padding: 6px 10px;
+        width: 100%;
+        position: relative;
+        /* Ensure it stays above other elements */
+        z-index: 2;
+        /* Bring input to the front */
+        transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      
+      .ask-ai-wrapper .ai-input::placeholder {
+        color: #888;
+        font-style: italic;
+      }
+      
+      /* SVG container */
+      .ask-ai-wrapper .icon-container {
+        position: relative;
+        width: 24px;
+        height: 24px;
+        transition: all 0.5s cubic-bezier(0.7, -0.5, 0.3, 1.5);
+        cursor: pointer;
+        z-index: 2;
+        /* Ensure SVG is clickable */
+      }
+      
+      /* SVG animation */
+      .ask-ai-wrapper .ai-icon path {
+        fill: #4a4a4a;
+        transform-origin: center;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      
+      /* Subtle underline effect */
+      .ask-ai-wrapper .underline-effect {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #f95c19;
+        transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+        z-index: 1;
+      }
+      
+      /* Ripple circle */
+      .ask-ai-wrapper .ripple-circle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: rgba(255, 107, 107, 0.2);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 0;
+      }
+      
+      /* Floating dots */
+      .ask-ai-wrapper .floating-dots {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        /* Prevent dots from blocking input */
+        z-index: 1;
+        /* Below input but above background */
+      }
+      
+      .ask-ai-wrapper .floating-dots span {
+        position: absolute;
+        width: 3px;
+        height: 3px;
+        background: #f95c19;
+        border-radius: 50%;
+        opacity: 0;
+        transition: opacity 0.3s ease, transform 0.6s cubic-bezier(0.7, -0.5, 0.3, 1.5);
+      }
+      
+      /* Background fade */
+      .ask-ai-wrapper .bg-fade {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, rgba(255, 107, 107, 0.05), rgba(255, 235, 235, 0.1));
+        opacity: 0;
+        transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        z-index: 0;
+      }
+      .ai-input-container form {
+        display: flex;
+        align-items: center;
+      }
+      /* Hover and focus states */
+      .ask-ai-wrapper .ai-input-container:hover,
+      .ask-ai-wrapper .ai-input:focus-within .ai-input-container {
+        border-color: #f95c19;
+        box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+        transform: translateY(-4px);
+      }
+      
+      .ask-ai-wrapper .ai-input-container:hover .icon-container,
+      .ask-ai-wrapper .ai-input:focus-within .icon-container {
+        transform: translateY(-2px) scale(1.1);
+      }
+      
+      .ask-ai-wrapper .ai-input-container:hover .ai-icon path,
+      .ask-ai-wrapper .ai-input:focus-within .ai-icon path {
+        fill: #f95c19;
+        transform: scale(1.1) rotate(5deg);
+        animation: gentleBounce 0.5s infinite alternate cubic-bezier(0.7, -0.5, 0.3, 1.5);
+      }
+      .submit-btn {
+      }
+      .ask-ai-wrapper .ai-input-container:hover .underline-effect,
+      .ask-ai-wrapper .ai-input:focus-within .underline-effect {
+        width: 100%;
+      }
+      
+      .ask-ai-wrapper .ai-input-container:hover .ripple-circle,
+      .ask-ai-wrapper .ai-input:focus-within .ripple-circle {
+        width: 200px;
+        height: 200px;
+      }
+      
+      .ask-ai-wrapper .ai-input-container:hover .floating-dots span,
+      .ask-ai-wrapper .ai-input:focus-within .floating-dots span {
+        opacity: 1;
+        animation: floatUp 1.2s infinite cubic-bezier(0.65, 0, 0.35, 1);
+      }
+      
+      .ask-ai-wrapper .ai-input-container:hover .bg-fade,
+      .ask-ai-wrapper .ai-input:focus-within .bg-fade {
+        opacity: 1;
+      }
+      
+      /* Focus state for input */
+      .ask-ai-wrapper .ai-input:focus {
+        color: #f95c19;
+      }
+      
+      /* Animations */
+      @keyframes gentleBounce {
+        0% {
+          transform: scale(1.1) translateY(1px);
+        }
+      
+        100% {
+          transform: scale(1.1) translateY(-1px);
+        }
+      }
+      
+      @keyframes floatUp {
+        0% {
+          transform: translate(var(--x), var(--y)) scale(1);
+          opacity: 0;
+        }
+      
+        50% {
+          transform: translate(var(--x), calc(var(--y) - 15px)) scale(1.3);
+          opacity: 1;
+        }
+      
+        100% {
+          transform: translate(var(--x), calc(var(--y) - 30px)) scale(1);
+          opacity: 0;
+        }
+      }
+      
+      /* Dot positions */
+      .ask-ai-wrapper .floating-dots span:nth-child(1) {
+        --x: 10px;
+        --y: 10px;
+        animation-delay: 0s;
+      }
+      
+      .ask-ai-wrapper .floating-dots span:nth-child(2) {
+        --x: -5px;
+        --y: 5px;
+        animation-delay: 0.2s;
+      }
+      
+      .ask-ai-wrapper .floating-dots span:nth-child(3) {
+        --x: 15px;
+        --y: 0px;
+        animation-delay: 0.4s;
+      }
+      
+      .ask-ai-wrapper .floating-dots span:nth-child(4) {
+        --x: -10px;
+        --y: 15px;
+        animation-delay: 0.6s;
+      }
+      .ai-icon button svg {
+        background-color: red; /* for testing only */
+      }
+      
+      #results-list {
+        list-style: none;
+        margin-top: 10px;
+        padding-left: 0;
+        background: #fff;
+        border: 1px solid #ccc;
+        max-height: 200px;
+        overflow-y: auto;
+      }
+      
+      #results-list li {
+        padding: 8px;
+        border-bottom: 1px solid #eee;
+        cursor: pointer;
+      }
+      
+      #results-list li:hover {
+        background: #f0f0f0;
+      }
+      
+      /*  Report Form */
+      /* Text */
+      
+      .report-text h2 {
+        font-family: 'DM Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 58px;
+        line-height: 70px;
+        /* or 121% */
+        letter-spacing: -1px;
+      
+        /* Colors / White */
+        color: #ffffff;
+      }
+      
+      .right-part {
+        width: 470px;
+        min-height: 600px; /* Keeps minimum space but allows growth */
+        background: #ffffff;
+        padding: 24px;
+        box-sizing: border-box;
+        border-radius: 8px;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+      }
+      
+      .container-report {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 79px;
+        max-width: 976px;
+        min-height: 500px;
+        margin: 150px auto 150px auto;
+        padding: 20;
+      }
+      .left-part,
+      .right-part {
+        flex: 1;
+      }
+      
+      @media (min-width: 768px) {
+        .report-container > .col-md-6 {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 300px;
+        }
+      
+        .login-popup {
+          position: relative; /* Changed from absolute */
+          top: 0;
+          left: 0;
+          z-index: 1050; /* Higher if needed */
+          width: 100vw;
+          height: 100vh;
+      
+          display: grid;
+          place-items: center; /* cleaner than place-self in child */
+        }
+      
+        .login-popup-container {
+          width: 50%;
+          color: #808080;
+          background-color: white;
+          display: flex;
+          flex-direction: column;
+          gap: 25px;
+          padding: 25px 30px;
+          border-radius: 8px;
+          font-size: 14px;
+          animation: fadeIn 0.5s;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- =============================================== -->
+    <!-- Main Content -->
+    <!-- =============================================== -->
+    <main class="main" id="top">
+      <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 d-block" data-navbar-on-scroll="data-navbar-on-scroll">
+        <div class="container">
+          <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/idfinderke-logo.png' %}" height="35" alt="logo" /></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+          <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base">
+              <li class="nav-item px-2">
+                <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
+              </li>
+              <li class="nav-item px-2">
+                <a class="nav-link" href="#services">Report</a>
+              </li>
+              <li class="nav-item px-2">
+                <a class="nav-link" href="#findUs">Request</a>
+              </li>
+              <li class="nav-item px-2">
+                <a class="nav-link" href="#findUs">Contact</a>
+              </li>
+            </ul>
+            <div class="dropdown d-none d-lg-block">
+              <button class="btn bg-soft-warning ms-2" id="dropdownMenuButton1" type="submit" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-search text-warning"></i></button>
+              <div class="dropdown-menu dropdown-menu-lg-end p-0 rounded" aria-labelledby="dropdownMenuButton1" style="top:55px">
+                <form>
+                  <input class="form-control border-200" type="search" placeholder="Enter ID No/Area/Name" aria-label="Search" style="background:#FDF1DF;" />
+                </form>
+              </div>
+            </div><a class="btn btn-primary order-1 order-lg-0 ms-lg-3" href="#!">Become a Partner</a>
+            <form class="d-flex my-3 d-block d-lg-none">
+              <input class="form-control me-2 border-200 bg-light" type="search" placeholder="Search" aria-label="Search" />
+              <button class="btn btn-outline-primary" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+
+      {% block content %}
+
+      {% endblock %}
+
+      <!-- ============================================ -->
+      <!-- <section> begin ============================ -->
+      <section class="py-0 bg-1000 fixed" id="footer">
+        <div class="container">
+          <div class="row justify-content-md-between justify-content-evenly py-4">
+            <div class="col-12 col-sm-8 col-md-6 col-lg-auto text-center text-md-start">
+              <p class="fs--1 my-2 fw-bold text-200">
+                2025 | IDFinder<sup style="font-size: 0.3em; top: -1.9em; position: relative;">KE</sup>
+              </p>
+            </div>
+            <div class="col-12 col-sm-8 col-md-6">
+              <p class="fs--1 my-2 text-center text-md-end text-200">
+                Design by&nbsp;<a class="fw-bold text-primary" href="{% static 'files/Project_Scope_Kamunya.pdf' %}" target="_blank">Rebecca Njoki</a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- end of .container -->
+      </section>
+      <!-- <section> close ============================ -->
+      <!-- ============================================ -->
+    </main>
+    <!-- =============================================== -->
+    <!-- End of Main Content -->
+    <!-- =============================================== -->
+
+    <!-- =============================================== -->
+    <!-- JavaScripts -->
+    <!-- =============================================== -->
+    <script src="{% static 'vendors/@popperjs/popper.min.js' %}"></script>
+    <script src="{% static 'vendors/bootstrap/bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendors/is/is.min.js' %}"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+    <script src="{% static 'vendors/fontawesome/all.min.js' %}"></script>
+    <script src="{% static 'js/theme.js' %}"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet" />
+  </body>
+</html>
