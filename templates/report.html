@@ -32,7 +32,10 @@
         <div class="row">
           <div class="col-12">{{ form.scanned_image|as_crispy_field }}</div>
         </div>
-        <button type="submit" class="btn btn-success mt-3">Submit Report</button>
+        <div class="d-flex justify-content-between mt-3">
+          <button type="submit" class="btn btn-success">Submit Report</button>
+          <a href="{% url 'home' %}" class="btn btn-secondary">Back to Home</a>
+        </div>
       </form>
     </div>
   </div>

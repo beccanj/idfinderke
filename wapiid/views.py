@@ -4,8 +4,9 @@ from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
 from django.contrib.postgres.search import SearchVector
 from django.contrib import messages
+from django.urls import reverse
 
-from .forms import LostIDReportForm
+from .forms import LostIDReportForm, ClaimRequestForm
 
 from django.http import JsonResponse
 import json
@@ -23,16 +24,20 @@ def index(request):
 def bap(request):
     return render(request, 'bap.html')
 
+from django.contrib import messages
+
 def report(request):
+    show_success = False
     if request.method == 'POST':
         form = LostIDReportForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            messages.success(request, "Lost ID reported successfully.")
-            return redirect('home')
+            show_success = True
+            form = LostIDReportForm()  # reset form
     else:
         form = LostIDReportForm()
-    return render(request, 'report.html', {'form': form})
+    return render(request, 'report.html', {'form': form, 'show_success': show_success})
+
 
 def newhero(request):
     return render(request, 'newhero.html')
@@ -118,6 +123,20 @@ def ajax_search(request):
 
 def results(request):
     return render(request, 'results.html')
+
+
+def claim(request):
+    if request.method == 'POST':
+        form = ClaimRequestForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            # Instead of returning render, redirect to home with a query param to trigger the popup
+            return redirect(reverse('home') + '?claim_success=1')
+    else:
+        form = ClaimRequestForm()
+    return render(request, 'claim.html', {'form': form})
+
+
 
 
 

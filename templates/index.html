@@ -16,8 +16,8 @@
     <!-- Favicons -->
     <!-- =============================================== -->
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/favicons/apple-touch-icon.png' %}" />
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/search.png' %}" />
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/search.png' %}" />
+    <link rel="icon" type="image/x-icon" href="{% static 'img/search.png' %}" />
+
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/search.png' %}" />
     <link rel="manifest" href="{% static 'img/favicons/manifest.json' %}" />
     <meta name="msapplication-TileImage" content="{% static 'img/favicons/mstile-150x150.png' %}" />
@@ -326,9 +326,9 @@
         align-items: center;
         gap: 79px;
         max-width: 976px;
-        min-height: 500px;
-        margin: 150px auto 150px auto;
-        padding: 20;
+      
+        margin: 110px auto 110px auto;
+        padding: 20px;
       }
       .left-part,
       .right-part {
@@ -368,6 +368,16 @@
           animation: fadeIn 0.5s;
         }
       }
+      
+      .container-claim {
+        display: flex;
+        align-items: center;
+        gap: 79px;
+        max-width: 976px;
+        justify-content: center;
+        margin: 100px auto 100px auto;
+        padding: 20px;
+      }
     </style>
   </head>
 
@@ -402,7 +412,7 @@
                   <input class="form-control border-200" type="search" placeholder="Enter ID No/Area/Name" aria-label="Search" style="background:#FDF1DF;" />
                 </form>
               </div>
-            </div><a class="btn btn-primary order-1 order-lg-0 ms-lg-3" href="#!">Become a Partner</a>
+            </div><a class="btn btn-primary order-1 order-lg-0 ms-lg-3" id="partnerBtn" href="#!">Become a Partner</a>
             <form class="d-flex my-3 d-block d-lg-none">
               <input class="form-control me-2 border-200 bg-light" type="search" placeholder="Search" aria-label="Search" />
               <button class="btn btn-outline-primary" type="submit">Search</button>
@@ -410,6 +420,16 @@
           </div>
         </div>
       </nav>
+
+      <!-- flash message -->
+      {% comment %} <div class="container">
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} alert-dismissible fade show shadow-sm" role="alert">
+            <i class="fas fa-check-circle me-2"></i>{{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      </div> {% endcomment %}
 
       {% block content %}
 
@@ -452,5 +472,33 @@
     <script src="{% static 'js/theme.js' %}"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet" />
+    {% if show_success %}
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script>
+        Swal.fire({
+          icon: 'success',
+          title: 'Success!',
+          text: 'Lost ID reported successfully.',
+          confirmButtonColor: '#F95C19',
+          timer: 2500,
+          timerProgressBar: true,
+          showConfirmButton: false
+        })
+      </script>
+    {% endif %}
+    {% if request.GET.claim_success %}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script>
+        Swal.fire({
+          icon: 'success',
+          title: 'Claim Submitted!',
+          text: 'Your claim has been received successfully.',
+          confirmButtonColor: '#F95C19',
+          timer: 2500,
+          timerProgressBar: true,
+          showConfirmButton: false
+        })
+      </script>
+    {% endif %}
   </body>
 </html>
