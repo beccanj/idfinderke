@@ -28,8 +28,15 @@
     <!-- Stylesheets -->
     <!-- =============================================== -->
     <link href="{% static 'css/theme.css' %}" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,367;1,367&display=swap" rel="stylesheet" />
 
     <style>
+      .form-font h2 {
+        font-family: 'Caveat', sans-serif;
+      }
+      
       /* Search section*/
       .search-section {
         width: 100%;
@@ -322,7 +329,7 @@
       
       .container-report {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         align-items: center;
         gap: 79px;
         max-width: 976px;
@@ -369,23 +376,18 @@
         }
       }
       
-      .container-claim {
-        display: flex;
-        align-items: center;
-        gap: 79px;
-        max-width: 976px;
-        justify-content: center;
-        margin: 100px auto 100px auto;
-        padding: 20px;
+      .form-font label {
+        color: black !important;
       }
     </style>
   </head>
 
-  <body>
+  <body class="d-flex flex-column min-vh-100">
     <!-- =============================================== -->
+
     <!-- Main Content -->
     <!-- =============================================== -->
-    <main class="main" id="top">
+    <main class="main flex-grow-1" id="top">
       <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 d-block" data-navbar-on-scroll="data-navbar-on-scroll">
         <div class="container">
           <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/idfinderke-logo.png' %}" height="35" alt="logo" /></a>
@@ -396,13 +398,13 @@
                 <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
               </li>
               <li class="nav-item px-2">
-                <a class="nav-link" href="#services">Report</a>
+                <a class="nav-link" href="{% url 'report' %}">Report</a>
               </li>
               <li class="nav-item px-2">
-                <a class="nav-link" href="#findUs">Request</a>
+                <a class="nav-link" href="{% url 'search' %}">Request</a>
               </li>
               <li class="nav-item px-2">
-                <a class="nav-link" href="#findUs">Contact</a>
+                <a class="nav-link" href="{% url 'home' %}#contact">Contact</a>
               </li>
             </ul>
             <div class="dropdown d-none d-lg-block">
@@ -436,30 +438,32 @@
       {% endblock %}
 
       <!-- ============================================ -->
-      <!-- <section> begin ============================ -->
-      <section class="py-0 bg-1000 fixed" id="footer">
-        <div class="container">
-          <div class="row justify-content-md-between justify-content-evenly py-4">
-            <div class="col-12 col-sm-8 col-md-6 col-lg-auto text-center text-md-start">
-              <p class="fs--1 my-2 fw-bold text-200">
-                2025 | IDFinder<sup style="font-size: 0.3em; top: -1.9em; position: relative;">KE</sup>
-              </p>
-            </div>
-            <div class="col-12 col-sm-8 col-md-6">
-              <p class="fs--1 my-2 text-center text-md-end text-200">
-                Design by&nbsp;<a class="fw-bold text-primary" href="{% static 'files/Project_Scope_Kamunya.pdf' %}" target="_blank">Rebecca Njoki</a>
-              </p>
-            </div>
-          </div>
-        </div>
-        <!-- end of .container -->
-      </section>
-      <!-- <section> close ============================ -->
-      <!-- ============================================ -->
     </main>
+
     <!-- =============================================== -->
     <!-- End of Main Content -->
     <!-- =============================================== -->
+
+    <!-- <section> begin ============================ -->
+    <section class="py-0 bg-1000" id="footer">
+      <div class="container">
+        <div class="row justify-content-md-between justify-content-evenly py-4">
+          <div class="col-12 col-sm-8 col-md-6 col-lg-auto text-center text-md-start">
+            <p class="fs--1 my-2 fw-bold text-200">
+              2025 | IDFinder<sup style="font-size: 0.3em; top: -1.9em; position: relative;">KE</sup>
+            </p>
+          </div>
+          <div class="col-12 col-sm-8 col-md-6">
+            <p class="fs--1 my-2 text-center text-md-end text-200">
+              Design by&nbsp;<a class="fw-bold text-primary" href="{% static 'files/Project_Scope_Kamunya.pdf' %}" target="_blank">Rebecca Njoki</a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- end of .container -->
+    </section>
+    <!-- <section> close ============================ -->
+    <!-- ============================================ -->
 
     <!-- =============================================== -->
     <!-- JavaScripts -->
@@ -470,6 +474,23 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
     <script src="{% static 'vendors/fontawesome/all.min.js' %}"></script>
     <script src="{% static 'js/theme.js' %}"></script>
+    <script>
+      function getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            function (position) {
+              document.getElementById('latitude').value = position.coords.latitude.toFixed(6)
+              document.getElementById('longitude').value = position.coords.longitude.toFixed(6)
+            },
+            function () {
+              alert('Unable to retrieve your location. Please allow location access.')
+            }
+          )
+        } else {
+          alert('Geolocation is not supported by your browser.')
+        }
+      }
+    </script>
 
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet" />
     {% if show_success %}
@@ -487,7 +508,7 @@
       </script>
     {% endif %}
     {% if request.GET.claim_success %}
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       <script>
         Swal.fire({
           icon: 'success',

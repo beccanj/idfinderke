@@ -1,14 +1,15 @@
 {% extends 'index.html' %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block content %}
-  <div class="container-report">
+  {% comment %} <div class="container-report">
     <div class="left-part">
       <!-- Left content here -->
       <h2>Report A Lost ID</h2>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi recusandae iure aperiam, ut eveniet repellat? Animi voluptatibus nesciunt rerum est saepe perferendis, illum pariatur vero odit nisi, aliquid cumque molestiae.</p>
     </div>
-    <div class="right-part">
+    <div>
       <!-- Right content here -->
 
       <form method="post" enctype="multipart/form-data">
@@ -38,5 +39,153 @@
         </div>
       </form>
     </div>
-  </div>
+  </div> {% endcomment %}
+  {% comment %} <section>
+    <div class="container" style=" : 850px ;">
+      <div class="row shadow-lg rounded overflow-hidden">
+        <!-- Image Section -->
+        <div class="col-md-6 d-none d-md-block p-0">
+          <img src="{% static 'forms/images/registration-form-1.jpg' %}" class="img-fluid h-100 w-100 object-fit-cover" alt="Form Image" />
+        </div>
+
+        <!-- Form Section -->
+        <div class="col-md-6 bg-white p-4">
+          <h3 class="text-center text-uppercase mb-4">Registration Form</h3>
+          <form method="post">
+            {% csrf_token %}
+            <div class="row mb-3">
+              <div class="col">
+                <label for="first_name" class="form-label">First Name</label>
+                <input type="text" id="first_name" name="first_name" class="form-control" placeholder="First Name" />
+              </div>
+              <div class="col">
+                <label for="last_name" class="form-label">Last Name</label>
+                <input type="text" id="last_name" name="last_name" class="form-control" placeholder="Last Name" />
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input type="text" id="username" name="username" class="form-control" placeholder="Username" />
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">Email Address</label>
+              <input type="email" id="email" name="email" class="form-control" placeholder="Email" />
+            </div>
+
+            <div class="mb-3">
+              <label for="gender" class="form-label">Gender</label>
+              <select class="form-select" id="gender" name="gender">
+                <option disabled selected>Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" id="password" name="password" class="form-control" placeholder="Password" />
+            </div>
+
+            <div class="mb-4">
+              <label for="confirm_password" class="form-label">Confirm Password</label>
+              <input type="password" id="confirm_password" name="confirm_password" class="form-control" placeholder="Confirm Password" />
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Register</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section> {% endcomment %}
+
+  <section class="m-0">
+    <div class="container d-flex justify-content-center">
+      <div class="card mb-3 custom-card shadow">
+        <div class="row g-0 align-items-center">
+          <!-- Image Side -->
+          <div class="col-md-5 d-none d-md-block">
+            <img src="{% static 'img/kenyan.png' %}" alt="..." />
+          </div>
+
+          <!-- Content Side -->
+          <div class="col-md-7">
+            <div class="card-body p-5">
+              <form method="post" enctype="multipart/form-data" class="form-font">
+                {% csrf_token %}
+                <h2 class="pb-3 text-left text-primary">Report A Lost ID today!</h2>
+
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label for="full_name" style="color: #222132;">Full Name</label>
+                    <input type="text" class="form-control" id="full_name" name="full_name" required />
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label for="id_number" style="color: #222132;">ID Number</label>
+                    <input type="text" class="form-control" id="id_number" name="id_number" required />
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label for="document_type" style="color: #222132;">Document Type</label>
+                    <select class="form-select" id="document_type" name="document_type" required>
+                      <option value="">--------</option>
+                      <option value="ID">ID</option>
+                      <option value="Passport">Passport</option>
+                      <option value="License">Driving License</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label for="lost_location" style="color: #222132;">Lost Location</label>
+                    <input type="text" class="form-control" id="lost_location" name="lost_location" required />
+                  </div>
+                </div>
+
+                <div class="row align-items-end">
+                  <div class="col-md-4 mb-3">
+                    <label for="latitude" class="form-label" style="color: #222132;">Latitude</label>
+                    <input type="text" class="form-control" id="latitude" name="latitude" readonly />
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <label for="longitude" class="form-label" style="color: #222132;">Longitude</label>
+                    <input type="text" class="form-control" id="longitude" name="longitude" readonly />
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <label class="form-label" style="color: #222132;">&nbsp;</label>
+                    <button type="button" class="btn btn-outline-primary w-100" onclick="getLocation()">GET</button>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label for="contact_email" style="color: #222132;">Contact Email</label>
+                    <input type="email" class="form-control" id="contact_email" name="contact_email" required />
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label for="found_by" style="color: #222132;">Found By (optional)</label>
+                    <input type="text" class="form-control" id="found_by" name="found_by" />
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-12 mb-3">
+                    <label for="scanned_image" style="color: #222132;">Scanned Image</label>
+                    <input type="file" class="form-control" id="scanned_image" name="scanned_image" accept="image/*" required/>
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-between mt-3">
+                  <button type="submit" class="btn btn-danger hover-top btn-glow">Submit Report</button>
+                  <a href="{% url 'home' %}" class="btn btn-outline-danger">Back to Home</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 {% endblock %}
