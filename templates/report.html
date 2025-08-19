@@ -119,18 +119,18 @@
 
                 <div class="row">
                   <div class="col-md-6 mb-3">
-                    <label for="full_name" style="color: #222132;">Full Name</label>
-                    <input type="text" class="form-control" id="full_name" name="full_name" required />
+                    <label for="full_name" class="form-label">Full Name</label>
+                    <input type="text" class="form-control"  id="full_name" name="full_name" required />
                   </div>
                   <div class="col-md-6 mb-3">
-                    <label for="id_number" style="color: #222132;">ID Number</label>
+                    <label for="id_number" class="form-label">ID Number</label>
                     <input type="text" class="form-control" id="id_number" name="id_number" required />
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-md-6 mb-3">
-                    <label for="document_type" style="color: #222132;">Document Type</label>
+                    <label for="document_type" class="form-label" >Document Type</label>
                     <select class="form-select" id="document_type" name="document_type" required>
                       <option value="">--------</option>
                       <option value="ID">ID</option>
@@ -139,40 +139,40 @@
                     </select>
                   </div>
                   <div class="col-md-6 mb-3">
-                    <label for="lost_location" style="color: #222132;">Lost Location</label>
+                    <label for="lost_location" class="form-label">Lost Location</label>
                     <input type="text" class="form-control" id="lost_location" name="lost_location" required />
                   </div>
                 </div>
 
                 <div class="row align-items-end">
                   <div class="col-md-4 mb-3">
-                    <label for="latitude" class="form-label" style="color: #222132;">Latitude</label>
+                    <label for="latitude" class="form-label" >Latitude</label>
                     <input type="text" class="form-control" id="latitude" name="latitude" readonly />
                   </div>
                   <div class="col-md-4 mb-3">
-                    <label for="longitude" class="form-label" style="color: #222132;">Longitude</label>
+                    <label for="longitude" class="form-label" >Longitude</label>
                     <input type="text" class="form-control" id="longitude" name="longitude" readonly />
                   </div>
                   <div class="col-md-4 mb-3">
-                    <label class="form-label" style="color: #222132;">&nbsp;</label>
+                    <label class="form-label" >&nbsp;</label>
                     <button type="button" class="btn btn-outline-primary w-100" onclick="getLocation()">GET</button>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-md-6 mb-3">
-                    <label for="contact_email" style="color: #222132;">Contact Email</label>
+                    <label for="contact_email" class="form-label" >Contact Email</label>
                     <input type="email" class="form-control" id="contact_email" name="contact_email" required />
                   </div>
                   <div class="col-md-6 mb-3">
-                    <label for="found_by" style="color: #222132;">Found By (optional)</label>
+                    <label for="found_by" class="form-label" >Found By (optional)</label>
                     <input type="text" class="form-control" id="found_by" name="found_by" />
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-12 mb-3">
-                    <label for="scanned_image" style="color: #222132;">Scanned Image</label>
+                    <label for="scanned_image" class="form-label" >Scanned Image</label>
                     <input type="file" class="form-control" id="scanned_image" name="scanned_image" accept="image/*" required/>
                   </div>
                 </div>
