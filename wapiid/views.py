@@ -16,7 +16,7 @@ from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from email.mime.image import MIMEImage
 import os
-
+from django.core.mail import send_mail
 
 # Create your views here.
 # Home page
@@ -183,6 +183,10 @@ def claim(request):
     else:
         form = ClaimRequestForm()
     return render(request, 'claim.html', {'form': form})
+
+
+
+ 
 
 
 

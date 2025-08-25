@@ -34,6 +34,39 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
 
     <style>
+      .newsletter-card {
+        position: relative;
+        overflow: hidden;
+      }
+      
+      /* Pink blurred circle */
+      .newsletter-card::before {
+        content: '';
+        position: absolute;
+        width: 130px;
+        height: 80px;
+        right: 10px;
+        top: -40px;
+        background: #f78da7; /* rose */
+        border-radius: 50%;
+        filter: blur(40px);
+        z-index: 0;
+      }
+      
+      /* Purple blurred circle */
+      .newsletter-card::after {
+        content: '';
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        right: 50px;
+        top: -20px;
+        background: #faad78;
+        border-radius: 50%;
+        filter: blur(35px);
+        z-index: 0;
+      }
+      
       .form-font h2 {
         font-family: 'Caveat', sans-serif;
       }
@@ -405,13 +438,9 @@
               </li>
             </ul>
             <div class="dropdown d-none d-lg-block">
-              <button class="btn bg-soft-warning ms-2" id="dropdownMenuButton1" type="submit" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-search text-warning"></i></button>
-              <div class="dropdown-menu dropdown-menu-lg-end p-0 rounded" aria-labelledby="dropdownMenuButton1" style="top:55px">
-                <form>
-                  <input class="form-control border-200" type="search" placeholder="Search..." aria-label="Search" style="background:#FDF1DF;" />
-                </form>
-              </div>
-            </div><a class="btn btn-primary order-1 order-lg-0 ms-lg-3" id="partnerBtn" href="{% url 'home' %}#contact">Become a Partner</a>
+              <button class="btn bg-soft-warning ms-2" id="dropdownMenuButton1" type="submit" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user text-warning"></i></button>
+              
+            </div><a class="btn btn-primary order-1 order-lg-0 ms-lg-3" id="partnerBtn" href="{% url 'home' %}#contact" data-bs-toggle="modal" data-bs-target="#partnerModal">Become a Partner</a>
             <form class="d-flex my-3 d-block d-lg-none">
               <input class="form-control me-2 border-200 bg-light" type="search" placeholder="Search" aria-label="Search" />
               <button class="btn btn-outline-primary" type="submit">Search</button>
@@ -495,7 +524,6 @@
         document.getElementById('partnerForm').addEventListener('submit', (e) => {
           e.preventDefault()
           alert('Form submitted!')
-          
         })
       })
     </script>
@@ -548,48 +576,35 @@
       </script>
     {% endif %}
 
+    {% comment %}// modal here{% endcomment %}
+
     <div class="modal fade" id="partnerModal" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Become a Community Partner</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-          </div>
-
-          <div class="modal-body">
-            <form id="partnerForm">
-              <!-- Step 1 -->
-              <div class="form-step active">
-                <h6>Step 1: Contact Info</h6>
-                <input type="text" class="form-control mb-3" placeholder="Your Name" required />
-                <input type="email" class="form-control mb-3" placeholder="Email" required />
-                <button type="button" class="btn btn-danger next-step">Next</button>
-              </div>
-
-              <!-- Step 2 -->
-              <div class="form-step">
-                <h6>Step 2: Organization Info</h6>
-                <input type="text" class="form-control mb-3" placeholder="Organization Name" required />
-                <input type="text" class="form-control mb-3" placeholder="Website (optional)" />
-                <div class="d-flex justify-content-between">
-                  <button type="button" class="btn btn-secondary prev-step">Back</button>
-                  <button type="button" class="btn btn-danger next-step">Next</button>
-                </div>
-              </div>
-
-              <!-- Step 3 -->
-              <div class="form-step">
-                <h6>Step 3: Message</h6>
-                <textarea class="form-control mb-3" rows="4" placeholder="Tell us how you want to partner"></textarea>
-                <div class="d-flex justify-content-between">
-                  <button type="button" class="btn btn-secondary prev-step">Back</button>
-                  <button type="submit" class="btn btn-success">Submit</button>
-                </div>
-              </div>
-            </form>
-          </div>
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content d-flex justify-content-center align-items-center">
+          <form action="https://api.web3forms.com/submit" method="POST"  class="newsletter-card border border-secondary rounded bg-light p-4 w-100">
+            {% csrf_token %}
+            
+            <input type="hidden" name="access_key" value="430cab00-2681-41d7-8027-6cd50c61645d">
+            <input type="hidden" name="redirect" value="/">
+            
+            <div class="mb-3 position-relative" style="z-index: 1;">
+              <h5 class="fw-bold text-primary">Become A Partner</h5>
+              <p class="text-dark mb-2">Join us in reuniting lost IDs with their owners. Enter your email to get started.</p>
+            </div>
+            <div class="d-flex flex-row gap-2" style="z-index: 1;">
+              <input type="email" name="email" class="form-control" placeholder="Enter your email..." aria-label="Email address" />
+              <button class="btn btn-primary" type="submit">Join</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
+
+
+    
+
+    
+
+    {% comment %}end modal{% endcomment %}
   </body>
 </html>

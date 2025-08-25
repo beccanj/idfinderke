@@ -33,5 +33,6 @@ urlpatterns = [
     path('results', views.results, name="results"),
     path('claim', views.claim, name="claim"),
     
+    
     path('admin/', admin.site.urls),
 ]
